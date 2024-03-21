@@ -179,7 +179,9 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 # Настройки для Celery
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'myapp.tasks.my_task',
-        'schedule': timedelta(minutes=10),
+        'task': 'habits.tasks.habit_operate',
+        'schedule': timedelta(minutes=1),
     },
 }
+
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
