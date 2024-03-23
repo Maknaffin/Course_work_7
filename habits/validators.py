@@ -31,7 +31,8 @@ class IsNiceValidator:
         if value.get(self.associated_habit):
             is_nice = dict(value).get(self.associated_habit).is_nice
             if not is_nice:
-                raise ValidationError('В связанные привычки могут попадать только привычки с признаком приятной привычки')
+                raise ValidationError(
+                    'В связанные привычки могут попадать только привычки с признаком приятной привычки')
 
 
 class NiceHabitValidator:
