@@ -175,7 +175,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
         'task': 'habits.tasks.habit_operate',
-        'schedule': timedelta(minutes=1),
+        'schedule': timedelta(days=1),
     },
 }
 
