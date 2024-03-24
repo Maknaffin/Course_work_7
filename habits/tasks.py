@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 
 from habits.models import Habit
+from habits.services import set_schedule
 from users.models import User
 
 
@@ -19,7 +20,6 @@ def habit_operate():
         now = timezone.make_aware(now, timezone.get_current_timezone())
         if not habit.is_nice and now.hour == habit.time.hour and now.minute == habit.time.minute:
             text = f"Я буду {habit.action} в {habit.time.strftime('%H:%M')} в {habit.place}"
-
             send_message(text, habit.user.chat_id)
             if habit.associated_habit:
                 text = f"Затем я сделаю: {habit.associated_habit}"
@@ -27,6 +27,8 @@ def habit_operate():
             elif habit.reward:
                 text = f"Я получу: {habit.reward}"
                 send_message(text, habit.user.chat_id)
+            set_schedule(habit.period)
+
 
 
 def send_message(text, user_chat_id):
